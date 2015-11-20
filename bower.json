@@ -1,6 +1,25 @@
 {
   "name": "vs.toolkit",
   "version": "0.1.0",
+  "main":"dist/vs.toolkit.min.js",
+  "ignore": [
+    "src",
+    "spec",
+    "gulp",
+    ".bowerrc",
+    ".gitignore",
+    ".jshintignore",
+    ".jshintrc",
+    ".editorconfig",
+    "bower.json",
+    "gruntfile.js",
+    "karma.conf.js",
+    ".yo-rcjson",
+    "tsd.json",
+    "tslint.json",
+    "package.json",
+    "README.md"
+  ],
   "dependencies": {
     "angular": "~1.4.7"
   },
