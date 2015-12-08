@@ -1,7 +1,9 @@
 {
   "name": "vs.toolkit",
   "version": "0.1.0",
-  "dependencies": {},
+  "dependencies": {
+    "gulp-uglify": "^1.5.1"
+  },
   "scripts": {
     "test": "gulp test"
   },

@@ -21,6 +21,16 @@ var $ = require('gulp-load-plugins')();
       .pipe($.size({ title: path.join(conf.paths.dist, '/'), showFiles: true }));
   });
 
+  gulp.task('dist-debug', ['scripts'], function () {
+
+    return gulp.src(path.join(conf.paths.tmp, '/dist/**/*.js'))
+      .pipe($.sourcemaps.init())
+      .pipe($.concat('vs.toolkit.src.js'))
+      .pipe($.sourcemaps.write('maps'))
+      .pipe(gulp.dest(path.join(conf.paths.dist, '/')))
+      .pipe($.size({ title: path.join(conf.paths.dist, '/'), showFiles: true }));
+  });
+
   gulp.task('scripts', ['tsd:install'], function () {
   return gulp.src(path.join(conf.paths.src, '/**/*.ts'))
     .pipe($.sourcemaps.init())

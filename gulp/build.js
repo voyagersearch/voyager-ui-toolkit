@@ -26,3 +26,4 @@ gulp.task('clean', ['tsd:purge'], function (done) {
 });
 
 gulp.task('build', ['dist']);
+gulp.task('build-debug', ['dist-debug']);
