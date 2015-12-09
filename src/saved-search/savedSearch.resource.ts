@@ -2,7 +2,9 @@
 declare var config;
 
 angular.module('vs.tools.savedSearch').
-  factory('savedSearchResource', function ($http, $q) {
+	/* @ngInject */
+  factory('savedSearchResource', function ($http) {
+
     'use strict';
 
     function _doSave(request) {

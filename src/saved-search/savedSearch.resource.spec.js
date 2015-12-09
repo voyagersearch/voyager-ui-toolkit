@@ -4,13 +4,13 @@ describe('savedSearchResource', function () {
 
   beforeEach(function(){
     // module('vs.tools');
-    // module('vs.tools.savedSearch', []);
+    // module('vs.tools.savedSearch');
     // module(function ($provide) {
     //   $provide.constant('config', cfg);
     // });
     inject(function (_$http_, _$q_, _savedSearchResource_) {
-      $http = _$http_;
-      $q = _$q_;
+      // $http = _$http_;
+      // $q = _$q_;
       savedSearchResource = _savedSearchResource_;
     });
   });
