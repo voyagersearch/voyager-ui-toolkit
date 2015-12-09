@@ -2,33 +2,33 @@
 declare var config;
 
 angular.module('vs.tools.savedSearch').
-  factory('savedSearchResource', function (sugar, $http, $q) {
+  factory('savedSearchResource', function (sugar, $http, $q, configService, converter) {
     'use strict';
 
     function _doSave(request) {
 
-    //   if (configService.hasChanges()) {
-    //     var deferred = $q.defer();
-    //     sugar.postJson(configService.getUpdatedSettings(), 'display', 'config').then(function(response) {
-    //       request.config = response.data.id;
-    //       /* jshint ignore:start */
-    //       request.query += '/disp=' + request.config;
-    //       request.path = request.query;
-    //       sugar.postJson(request, 'display', 'ssearch').then(function(savedResponse) {
-    //         deferred.resolve();
-    //       }, function(error) {
-    //         deferred.reject(error);
-    //       });
-    //       /* jshint ignore:end */
-    //     }, function(error) {
-    //       deferred.reject(error);
-    //     });
-    //     return deferred.promise;
-    //   } else {
-    //     request.query += '/disp=' + request.config;
-    //     request.path = request.query;
-    //     return sugar.postJson(request, 'display', 'ssearch');
-    //   }
+      if (configService.hasChanges()) {
+        var deferred = $q.defer();
+        sugar.postJson(configService.getUpdatedSettings(), 'display', 'config').then(function(response) {
+          request.config = response.data.id;
+          /* jshint ignore:start */
+          request.query += '/disp=' + request.config;
+          request.path = request.query;
+          sugar.postJson(request, 'display', 'ssearch').then(function(savedResponse) {
+            deferred.resolve();
+          }, function(error) {
+            deferred.reject(error);
+          });
+          /* jshint ignore:end */
+        }, function(error) {
+          deferred.reject(error);
+        });
+        return deferred.promise;
+      } else {
+        request.query += '/disp=' + request.config;
+        request.path = request.query;
+        return sugar.postJson(request, 'display', 'ssearch');
+      }
     }
 
     function _getQueryString() {
@@ -55,8 +55,8 @@ angular.module('vs.tools.savedSearch').
       },
 
       saveSearch: function(savedSearch, params) {
-        // savedSearch.config = configService.getConfigId();
-        // savedSearch.query = converter.toClassicParams(params);
+        savedSearch.config = configService.getConfigId();
+        savedSearch.query = converter.toClassicParams(params);
         return _doSave(savedSearch);
       },
 
