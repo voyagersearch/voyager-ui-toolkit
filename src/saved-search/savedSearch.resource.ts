@@ -2,7 +2,7 @@
 declare var config;
 
 angular.module('vs.tools.savedSearch').
-  factory('savedSearchResource', function (sugar, $http, configService, $q, authService, $modal, recentSearchService, $location, filterService, $analytics, converter) {
+  factory('savedSearchResource', function (sugar, $http, configService, converter, $q) {
     'use strict';
 
     function _doSave(request) {
