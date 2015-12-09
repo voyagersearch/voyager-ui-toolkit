@@ -3,6 +3,7 @@
 var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
+var ngAnnotate = require('gulp-ng-annotate');
 
 var $ = require('gulp-load-plugins')();
 
@@ -15,6 +16,11 @@ var $ = require('gulp-load-plugins')();
 
     return gulp.src(path.join(conf.paths.tmp, '/dist/**/*.js'))
       .pipe($.sourcemaps.init())
+      .pipe(ngAnnotate({
+            // true helps add where @ngInject is not used. It infers.
+            // Doesn't work with resolve, so we must be explicit there
+            add: true
+        }))
       .pipe($.uglify({ preserveComments: $.uglifySaveLicense })).on('error', conf.errorHandler('Uglify'))
       .pipe($.sourcemaps.write('maps'))
       .pipe(gulp.dest(path.join(conf.paths.dist, '/')))
