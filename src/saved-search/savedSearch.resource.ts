@@ -35,7 +35,7 @@ angular.module('vs.tools.savedSearch').
       var rows = 150;  // @TODO set to what we really want
       var queryString = config.root + 'solr/ssearch/select?';
       queryString += 'rows=' + rows + '&rand=' + Math.random();
-      queryString += 'fl=id,title,description,owner,path,share,query,config,order,saved,private,view,_version_,config_title:[configTitle]';
+      queryString += '&fl=id,title,description,owner,path,share,query,config,order,saved,private,view,_version_,config_title:[configTitle]';
       queryString += '&wt=json&json.wrf=JSON_CALLBACK';
       return queryString;
     }
