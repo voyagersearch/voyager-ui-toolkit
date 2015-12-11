@@ -9,7 +9,7 @@ angular.module('vs.tools.pageConfig').
 
     function _getQueryString() {
       var queryString = config.root + 'api/rest/display/config/list';
-      queryString += '&rand=' + Math.random();
+      queryString += '?rand=' + Math.random();
       return queryString;
     }
 
