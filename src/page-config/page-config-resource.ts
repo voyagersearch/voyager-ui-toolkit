@@ -41,6 +41,16 @@ angular.module('vs.tools.pageConfig').
 			});
 		}
 
+		function _deletePageConfig(id: string) {
+			return $http.delete(_getConfigQueryString(id)).then(function (data: any) {
+				return data;
+			}, function(error: any) {
+				// @TODO: handle error
+				console.log(error);
+				return error;
+			});
+		}
+
 		function _savePageConfig(template: any) {
 			return $http.post(configUri, template).then(function (data: any) {
 				return data;
@@ -57,6 +67,9 @@ angular.module('vs.tools.pageConfig').
 			},
 			getPageConfig: function(id: string) {
 				return _getPageConfig(id);
+			},
+			deletePageConfig: function(id: string) {
+				return _deletePageConfig(id);
 			},
 			savePageConfig: function(template: any){
 				return _savePageConfig(template);
