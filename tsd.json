@@ -3,5 +3,16 @@
   "repo": "borisyankov/DefinitelyTyped",
   "ref": "master",
   "path": ".tmp/typings",
-  "bundle": ".tmp/typings/tsd.d.ts"
+  "bundle": ".tmp/typings/tsd.d.ts",
+  "installed": {
+    "angularjs/angular.d.ts": {
+      "commit": "4c41545030eba44b27ce7209112dbf862f6b1d78"
+    },
+    "jquery/jquery.d.ts": {
+      "commit": "4c41545030eba44b27ce7209112dbf862f6b1d78"
+    },
+    "jasmine/jasmine.d.ts": {
+      "commit": "dc9dabe74a5be62613b17a3605309783a12ff28a"
+    }
+  }
 }
