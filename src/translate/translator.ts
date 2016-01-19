@@ -12,9 +12,9 @@ module vs.tools.translate {
       var resourceUrl = this.config.root + 'api/rest/i18n/fields/standard.json';
 
       if (!this.fields) {
-        this.$http.get(resourceUrl).then((res: any) => {
+        return this.$http.get(resourceUrl).then((res: any) => {
           this.fields = res.data;
-          return;
+          return res.data;
         });
       } else {
         return this.$q.when();
