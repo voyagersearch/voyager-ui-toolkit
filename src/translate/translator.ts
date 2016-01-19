@@ -26,16 +26,13 @@ module vs.tools.translate {
       if (angular.isDefined(translated)) {
         return translated;
       } else {
-        return this.capitalizeEachWord(field);
+        return this.classify(field);
       }
     }
 
-    private capitalizeEachWord(str: any) {
-      // str = str.replace(/_/g, ' ');
-      // return str.replace(/\w\S*/g, function(txt) {
-      //   return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-      // });
-      return str.replace(/_/g, function(txt: any) {
+    private classify(str: string) {
+      str = str.replace(/_/g, ' ');
+      return str.replace(/\w\S*/g, function(txt: string) {
         return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
       });
     }
