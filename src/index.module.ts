@@ -6,7 +6,10 @@
 module vs.tools {
   'use strict';
 
+  declare var config;
+
   angular.module('vs.tools', [])
     .config(Config)
-    .run(RunBlock);
+    .run(RunBlock)
+    .constant('config', config);
 }

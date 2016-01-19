@@ -3,15 +3,15 @@ declare var config;
 
 angular.module('vs.tools.savedSearch').
 	/* @ngInject */
-  factory('savedSearchResource', function ($http) {
+  factory('savedSearchResource', function ($http: any) {
 
     'use strict';
 
-    function _doSave(request) {
-      request.query += '/disp=' + request.config;
-      request.path = request.query;
-      // return sugar.postJson(request, 'display', 'ssearch');
-    }
+    // function _doSave(request: any) {
+    //   request.query += '/disp=' + request.config;
+    //   request.path = request.query;
+    //   // return sugar.postJson(request, 'display', 'ssearch');
+    // }
 
     function _getQueryString() {
       var rows = 150;  // @TODO set to what we really want
@@ -23,9 +23,9 @@ angular.module('vs.tools.savedSearch').
     }
 
     function _execute() {
-      return $http.jsonp(_getQueryString()).then(function (data) {
+      return $http.jsonp(_getQueryString()).then(function (data: any) {
         return data.data.response.docs;
-      }, function(error) {
+      }, function(error: any) {
         // @TODO: handle error
         console.log(error);
         return error;
@@ -43,7 +43,7 @@ angular.module('vs.tools.savedSearch').
       //   return _doSave(savedSearch);
       // },
 
-      deleteSearch: function(id){
+      deleteSearch: function(id: string){
         return $http.delete(config.root + 'api/rest/display/ssearch/' + id).then(function(){
               // observers.forEach(function (entry) {
               //   entry(id);
@@ -51,16 +51,16 @@ angular.module('vs.tools.savedSearch').
             });
       },
 
-      order: function(id, beforeId, afterId) {
+      order: function(id: any, beforeId: any, afterId: any) {
         var data = '';
-        if(beforeId !== null) {
+        if (beforeId !== null) {
           data += 'before=' + beforeId;
         }
-        if(data !== '') {
+        if (data !== '') {
           data += '&';
         }
 
-        if(afterId !== null) {
+        if (afterId !== null) {
           data += 'after=' + afterId;
         }
         // return sugar.postForm('api/rest/display/ssearch/' + id + '/order', data);
