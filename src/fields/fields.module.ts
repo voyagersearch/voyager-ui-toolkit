@@ -5,6 +5,6 @@ module vs.tools.fields {
 'use strict';
 
 	angular.module('vs.tools.fields', [])
-		.service(FieldResourceService.refName, FieldResourceService);
+		.service(FieldsResource.refName, FieldsResource);
 
 }

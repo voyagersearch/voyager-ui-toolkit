@@ -5,12 +5,12 @@ declare var config;
 module vs.tools.fields {
 'use strict';
 
-	export interface IFieldResourceService {
+	export interface IFieldsResource {
 		gettingFields(fields?: string): ng.IPromise<any>;
 	}
 
-	export class FieldResourceService implements IFieldResourceService {
-		static refName = 'fieldResourceService';
+	export class FieldsResource implements IFieldsResource {
+		static refName = 'fieldsResource';
 
 		gettingFields: (fields?: string) => any;
 

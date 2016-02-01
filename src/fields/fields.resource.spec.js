@@ -1,5 +1,6 @@
-angular.module('vs.tools.fields', [])
-	.service('fieldResourceService', vs.tools.fields.FieldResourceService);
+// @TODO this is completely wrong - don't redefine the module and service here then check that its defined
+//  angular.module('vs.tools.fields', [])
+//	  .service('fieldsResource', vs.tools.fields.FieldsResource);
 
 var fieldResourceService;
 describe('Field Resource Service', function () {
@@ -7,8 +8,8 @@ describe('Field Resource Service', function () {
 	beforeEach(function() {
 		module('vs.tools.fields');
 
-		inject(function(_fieldResourceService_) {
-			fieldResourceService = _fieldResourceService_;
+		inject(function(_fieldsResource_) {
+			fieldResourceService = _fieldsResource_;
 		})
 	});
 
