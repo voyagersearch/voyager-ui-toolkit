@@ -28,9 +28,7 @@ module vs.tools.fields {
 			this.fetchHydrationStats = (query: string) => {
 
 				return this.fetch().then((fields: Array<any>) => {
-          var fl = sugar.pluck(fields, 'name');
-
-          // http://voyagerdemo.com/daily/solr/v0/select?&rows=0&wt=json&facet=true&facet.field=format
+          var fl = sugar.pluck(fields, 'name', function(field) { return field.name.indexOf('_') !== 0 && field.docs > 0; });
 
           return sugar.postForm('solr/v0/select?' + query, this.getStatsParams(fl)).then((res: any) => {
             var statsFields = res.data.facet_counts.facet_fields;
@@ -58,10 +56,9 @@ module vs.tools.fields {
       for (var i = 0; i < fields.length; i++) {
         statsField = statsFields[fields[i].name];
         if (statsField && statsField.length > 0) {
-          // fields[i].id = statsField;  TODO  why?
+          fields[i].id = fields[i].name;
           count = this.getCount(statsField);
           fields[i].hydration = count / total * 100;
-          // break;
         }
       }
       return i;
@@ -69,7 +66,7 @@ module vs.tools.fields {
 
     private getCount(field) {
       var count = 0;
-      for (var i = 1; i < field; i += 2) {
+      for (var i = 1; i < field.length; i += 2) {
         count += field[i];
       }
       return count;

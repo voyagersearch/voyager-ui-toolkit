@@ -28,10 +28,12 @@ module vs.tools.util {
 			return map;
 		}
 
-    pluck(array: any, name: string) {
+    pluck(array: any, name: string, fn?: Function) {
       var fl = [];
       array.forEach(function(value: any){
-        if (value.docs) {
+        if (fn && fn(value)) {
+          fl.push(value[name]);
+        } else if (angular.isUndefined(fn)) {
           fl.push(value[name]);
         }
       });
