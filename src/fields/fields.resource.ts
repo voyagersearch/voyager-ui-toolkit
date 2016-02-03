@@ -50,7 +50,7 @@ module vs.tools.fields {
 
 
     private getStatsParams(fl) {
-      return 'facets=true&facet.limit=10000&facet.mincount=100&rows=0&wt=json&facet.field=' + fl.join('facet.field=');
+      return 'facets=true&facet.limit=10000&facet.mincount=100&rows=0&wt=json&facet.field=' + fl.join('&facet.field=');
     }
 
     private applyHydration(statsFields, fields, total) {
