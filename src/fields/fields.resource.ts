@@ -20,7 +20,6 @@ module vs.tools.fields {
 
 			this.fetch = (fields?: any) => {
 				var fl = (fields || 'name,category,docs,disp_en');
-        fl = fl.split(',');
 				return sugar.postForm('solr/fields/select', this.getFieldsParams(fl)).then((res: any) => {
 						return res.data.response.docs;
 					});
@@ -46,29 +45,12 @@ module vs.tools.fields {
 		}
 
     private getFieldsParams(fl) {
-      return {
-        params: {
-          q: '*:*',
-          fl: fl,
-          rows: 10000,
-          sort: 'name%20asc',
-          wt: 'json'
-        }
-      };
+      return 'q=*:*&fl=' + fl + '&rows=10000&sort=name%20asc&wt=json';
     }
 
 
     private getStatsParams(fl) {
-      return {
-        params: {
-          facets: true,
-          'facet.field': fl,
-          'facet.limit': 10000,
-          'facet.mincount': 100,  // @TODO adjust this to a reasonable minimum
-          rows: 0,
-          wt: 'json'
-        }
-      };
+      return 'facets=true&facet.limit=10000&facet.mincount=100&rows=0&wt=json&facet.field=' + fl.join('facet.field=');
     }
 
     private applyHydration(statsFields, fields, total) {
