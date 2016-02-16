@@ -51,6 +51,16 @@ module vs.tools.util {
       });
     }
 
+    parseQueryString(queryString: string) {
+      var pairs = queryString.slice(1).split('&');
+      var result = {}, s;
+      pairs.forEach(function(pair) {
+        s = pair.split('=');
+        result[s[0]] = decodeURIComponent(s[1] || '');
+      });
+      return JSON.parse(JSON.stringify(result));
+    }
+
     postJson(request, api, action) {
       return this.$http({
         method: 'POST',
