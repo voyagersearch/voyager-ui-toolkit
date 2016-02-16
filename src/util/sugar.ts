@@ -50,5 +50,14 @@ module vs.tools.util {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded'}
       });
     }
+
+    postJson(request, api, action) {
+      return this.$http({
+        method: 'POST',
+        url: config.root + 'api/rest/' + api  + '/' + action + '.json',
+        data: request,
+        headers: {'Content-Type': 'application/json'}
+      });
+    }
 	}
 }
