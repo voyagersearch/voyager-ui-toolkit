@@ -8,8 +8,6 @@ angular.module('vs.tools.savedSearch').
     'use strict';
 
      function _doSave(savedSearch: any) {
-       savedSearch.query += '/disp=' + savedSearch.config;
-       savedSearch.path = savedSearch.query;
        return sugar.postJson(savedSearch, 'display', 'ssearch');
      }
 
