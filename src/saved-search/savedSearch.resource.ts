@@ -78,7 +78,7 @@ angular.module('vs.tools.savedSearch').
       fetchLabels: function() {
         var url = config.root + 'solr/ssearch/select?rows=0&facet=true&facet.field=labels&wt=json&r=' + new Date().getTime();
         return $http.get(url).then(function(resp) {
-          return resp.data.facet_fields.labels;
+          return resp.data.facet_counts.facet_fields.labels;
         }, function() {  // error if labels field doesn't exist
           return [];
         });
