@@ -7,7 +7,7 @@ angular.module('vs.tools.displayConfig').
 
 		'use strict';
 
-		var configUri = config.root + 'api/rest/display/display_config/';
+		var configUri = config.root + 'api/rest/display/config/';
 
 		function _getListQueryString() {
 			var queryString = configUri + 'list';
