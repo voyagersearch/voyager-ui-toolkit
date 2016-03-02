@@ -19,10 +19,10 @@ module vs.tools.fields {
 		constructor(private sugar: any) {
 
 			this.fetch = (fields?: any) => {
-				var fl = (fields || 'name,category,docs,disp_en');
+				var fl = (fields || 'name,category,docs,disp_en,sortable,filterable');
 				return sugar.postForm('solr/fields/select', this.getFieldsParams(fl)).then((res: any) => {
-						return res.data.response.docs;
-					});
+					return res.data.response.docs;
+				});
 			};
 
 			this.fetchHydrationStats = (query: string) => {
