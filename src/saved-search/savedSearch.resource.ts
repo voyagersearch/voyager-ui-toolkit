@@ -58,6 +58,14 @@ angular.module('vs.tools.savedSearch').
             });
       },
 
+      wipe: function() {
+        return $http.delete(config.root + 'api/rest/display/ssearch/wipe');
+      },
+
+      restore: function() {
+        return sugar.postForm('api/rest/display/restore', '');
+      },
+
       order: function(id: any, beforeId: any, afterId: any) {
         var data = '';
         if (beforeId !== null) {
