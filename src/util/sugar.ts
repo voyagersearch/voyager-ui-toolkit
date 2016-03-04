@@ -1,4 +1,5 @@
 module vs.tools.util {
+  'use strict';
 
 	export class Sugar {
 

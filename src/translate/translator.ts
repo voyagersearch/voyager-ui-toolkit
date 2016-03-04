@@ -1,4 +1,5 @@
 module vs.tools.translate {
+  'use strict';
 
   export class Translator {
 
