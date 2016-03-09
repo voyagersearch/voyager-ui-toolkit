@@ -18,12 +18,12 @@ module vs.tools.fields {
 		/* @ngInject */
 		constructor(private sugar: any) {
 
-			this.fetch = (fields?: any) => {
-				var fl = (fields || 'name,category,docs,disp_en,sortable,filterable,tableable,displayable');
-				return sugar.postForm('solr/fields/select', this.getFieldsParams(fl)).then((res: any) => {
-					return res.data.response.docs;
-				});
-			};
+      this.fetch = (fields?: any) => {
+        var fl = (fields || 'name,stype,category,docs,disp_en,sortable,filterable,tableable,displayable,editable');
+        return sugar.postForm('solr/fields/select', this.getFieldsParams(fl)).then((res: any) => {
+          return res.data.response.docs;
+        });
+      };
 
 			this.fetchHydrationStats = (query: string) => {
 
