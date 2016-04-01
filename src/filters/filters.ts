@@ -4,7 +4,7 @@ module vs.tools.filters {
   angular.module('vs.tools.filters', [])
     .filter('replaceString', function() {
       return function(hayStack: string, oldNeedle: string, newNeedle: string) {
-        return hayStack.replace(oldNeedle, newNeedle);
+        return hayStack.replace(new RegExp(oldNeedle, 'g'), newNeedle);
       };
     });
  }
