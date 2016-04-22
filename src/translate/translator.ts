@@ -4,9 +4,17 @@ module vs.tools.translate {
   export class Translator {
 
     private fields: any = null;
+    private removePrefixHash = {};
 
     /* @ngInject */
     constructor(private config: any, private $http: ng.IHttpService, private $q: ng.IQService) {
+      var removePrefixList = ['fs_','ft_','fh_','fi_','fl_','fd_','ff_','fu_','fp_','fy_','fm_','fb_', 'tag_','meta_','fss_'];
+      removePrefixList.forEach((item: string) => {
+        this.removePrefixHash[item] = true;
+        var c = item.substring(1,2);
+        var key = item.replace('_',c + "_");
+        this.removePrefixHash[key] = true;
+      });
     }
 
     public load() {
@@ -23,6 +31,13 @@ module vs.tools.translate {
     }
 
     public translateField(field: string) {
+      var idx = field.indexOf('_');
+      if(idx > -1) {
+        var prefix = field.substring(0,idx+1);
+        if(this.removePrefixHash[prefix]) {
+          field = field.replace(prefix,'');
+        }
+      }
       var translated = this.fields.FIELD[field];
       if (angular.isDefined(translated)) {
         return translated;
