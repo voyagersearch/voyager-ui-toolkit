@@ -14,6 +14,7 @@ module vs.tools.fields {
 
 		fetch: (properties?: string) => any;
 		fetchHydrationStats: (query: string) => any;
+		ensureTagsFieldExist: (fields: Array<any>) => any;
 
 		/* @ngInject */
 		constructor(private sugar: any) {
@@ -21,8 +22,33 @@ module vs.tools.fields {
       this.fetch = (fields?: any) => {
         var fl = (fields || 'name,stype,category,docs,disp_en,sortable,filterable,tableable,displayable,editable');
         return sugar.postForm('solr/fields/select', this.getFieldsParams(fl)).then((res: any) => {
+          this.ensureTagsFieldExist(res.data.response.docs);
           return res.data.response.docs;
         });
+      };
+
+      this.ensureTagsFieldExist = (fields: Array<any>) => {
+        var found = false;
+        for (var i = fields.length - 1; i >= 0; i--) {
+          if (fields[i].name === 'tag_tags') {
+            found = true;
+            break;
+          }
+        }
+
+        if (!found) {
+          fields.push({
+            category: 'TEXT',
+            disp_en: 'Tags',
+            displayable: true,
+            docs: 0,
+            filterable: true,
+            name: 'tag_tags',
+            sortable: false,
+            stype: 'string',
+            tableable: false
+          });
+        }
       };
 
 			this.fetchHydrationStats = (query: string) => {
