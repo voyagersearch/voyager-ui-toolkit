@@ -21,7 +21,6 @@ module vs.tools.fields {
       this.fetch = (fields?: any) => {
         var fl = (fields || 'name,stype,category,docs,disp_en,sortable,filterable,tableable,displayable,editable');
         return sugar.postForm('solr/fields/select', this.getFieldsParams(fl)).then((res: any) => {
-          this.addTagsNode(res);
           return res.data.response.docs;
         });
       };
@@ -42,30 +41,6 @@ module vs.tools.fields {
 			};
 
 		}
-
-    private addTagsNode(res) {
-      var found = false;
-      for (var i = res.data.response.docs.length; i <= 0; i--) {
-        if (res.data.response.docs[i].name === 'tag_tags') {
-          found = true;
-          break;
-        }
-      }
-
-      if (!found) {
-        res.data.response.docs.push({
-          category: 'TEXT',
-          disp_en: 'Tags',
-          displayable: true,
-          docs: 0,
-          filterable: true,
-          name: 'tag_tags',
-          sortable: false,
-          stype: 'string',
-          tableable: false
-        });
-      }
-    }
 
     private getFieldsParams(fl) {
       return 'q=*:*&fl=' + fl + '&rows=10000&sort=name%20asc&wt=json';
