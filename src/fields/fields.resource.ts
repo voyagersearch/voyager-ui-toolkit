@@ -21,7 +21,7 @@ module vs.tools.fields {
 
       this.fetch = (fields?: any) => {
         var fl = (fields || 'name,stype,category,docs,disp_en,sortable,filterable,tableable,displayable,editable');
-        return sugar.postForm('solr/fields/select', this.getFieldsParams(fl)).then((res: any) => {
+        return sugar.postForm('solr/fields/select?rand=' + Math.random(), this.getFieldsParams(fl)).then((res: any) => {
           this.ensureTagsFieldExist(res.data.response.docs);
           return res.data.response.docs;
         });
