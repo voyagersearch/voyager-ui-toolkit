@@ -69,12 +69,12 @@ module vs.tools.fields {
 		}
 
     private getFieldsParams(fl) {
-      return 'q=*:*&fl=' + fl + '&rows=10000&sort=name%20asc&wt=json';
+      return 'q=*:*&fl=' + fl + '&rows=10000&sort=name%20asc&wt=json&rand=' + Math.random();
     }
 
 
     private getStatsParams(fl) {
-      return 'facet=true&facet.limit=10000&facet.mincount=100&rows=0&wt=json&facet.field=' + fl.join('&facet.field=');
+      return 'facet=true&facet.limit=10000&facet.mincount=100&rows=0&wt=json&facet.field=' + fl.join('&facet.field=') + '&rand=' + Math.random();
     }
 
     private applyHydration(statsFields, fields, total) {
