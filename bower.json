@@ -1,6 +1,6 @@
 {
   "name": "vs.toolkit",
-  "version": "1.9.8a",
+  "version": "1.9.82",
   "main":"dist/vs.toolkit.min.js",
   "ignore": [
     "src",
