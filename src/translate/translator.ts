@@ -8,7 +8,7 @@ module vs.tools.translate {
 
     /* @ngInject */
     constructor(private config: any, private $http: ng.IHttpService, private $q: ng.IQService) {
-      var removePrefixList = ['fs_', 'ft_', 'fh_', 'fi_', 'fl_', 'fd_', 'ff_', 'fu_', 'fp_', 'fy_', 'fm_', 'fb_', 'tag_', 'meta_', 'fss_'];
+      var removePrefixList = ['fs_', 'ft_', 'fh_', 'fi_', 'fl_', 'fd_', 'ff_', 'fu_', 'fp_', 'fy_', 'fm_', 'fb_', 'tag_', 'meta_', 'fss_', 'lgrp_'];
       removePrefixList.forEach((item: string) => {
         this.removePrefixHash[item] = true;
         var c = item.substring(1, 2);
